@@ -45,6 +45,7 @@
 
 #include <iostream>
 #include <cfloat>
+#include <vector>
 
 namespace ro {
 
