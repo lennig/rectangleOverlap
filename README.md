@@ -37,7 +37,7 @@ empty Axis object, for example:
 Axis aos = new Axis(0,0);  
 overlapped = rect1.overlapped(rect2, aos)
   ```  
-If overlapped() returns false, then aos contains an axis of separation  
+If overlapped() returns false, then aos is an axis of separation  
 If overlapped() returns true, then aos is undefined  
 
 The algorithm implemented here is the one described in this article:  
