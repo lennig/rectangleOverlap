@@ -16,7 +16,7 @@ Instantiate a rectangle, rect1, like this:
 Given two rectangles, rect1 and rect2,  
     ```     
     bool overlapped = rect1.overlapped(rect2) 
-    ```
+    ```     
 returns true iff the two rectangles are overlapped.  
     ```
     overlapped = rect2.overlapped(rect1)  
