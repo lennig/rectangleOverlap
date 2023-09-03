@@ -1,14 +1,16 @@
 # rectangleOverlap
-Given two rectangles in (x,y) space compute whether or not they overlap. If they do not, provide their axis of separation
+Given two rectangles in (x,y) space computes whether or not the two rectangles overlap.  
+If they do not overlap, optionally provide their axis of separation.
 
 
 
 Computes whether two rectangles in (x,y) space overlap one another.  
 If they do not, optionally provides the axis of separation.  
 
-How to use:  
-  Instantiate a rectangle rect1 like this:  
-    Rectangle rect1 = new Rectangle(x, y, w, h, r)  
+**How to use:**  
+Instantiate a rectangle rect1 like this:  
+  Rectangle rect1 = new Rectangle(x, y, w, h, r)  
+  
   where  
    (x,y) = center of rect1  
    (w,h) = width and height of rect1  
@@ -22,12 +24,12 @@ returns the same value.
 
 If desired, the axis of separation may be obtained.  
 The axis of separation is the axis upon which the orthogonal  
-projections of the vertices of the two rectangles do not overlap.  
+projections of the vertices of the two rectangles do not overlap.    
 
-To obtain this axis of separation, the caller must pass in an  
+To obtain the axis of separation, the caller must pass in an  
 empty Axis object, for example:  
    Axis aos = new Axis(0,0);  
-   overlapped = rect1.overlapped(rect2, aos)  
+   overlapped = rect1.overlapped(rect2, aos) 
 If overlapped() returns false, then aos contains the axis of separation  
 If overlapped() returns true, then aos is undefined  
 
@@ -35,6 +37,6 @@ The algorithm implemented here is the one described in this article:
  https://jkh.me/files/tutorials/Separating%20Axis%20Theorem%20for%20Oriented%20Bounding%20Boxes.pdf  
 which is a special case (for rectangles) of the Separating Axis Theorem for convex polygons  
 
-How to build example:  
+**How to build example:**  
  g++ -std=c++17 -o rectangleOverlap  rectangleOverlap.cpp main.cpp  
 
