@@ -3,10 +3,11 @@ Given two rectangles in (x,y) space, computes whether or not they overlap one an
 If they do not overlap, optionally provides their axis of separation.
 
 **How to use:**  
-Instantiate a rectangle, rect1, like this:  
-  ~~~
-  Rectangle rect1 = new Rectangle(x, y, w, h, r)  
-  ~~~
+Instantiate a rectangle rect1 like this: 
+ 
+  ```
+Rectangle rect1 = new Rectangle(x, y, w, h, r)  
+  ```
   
   where  
    (x,y) = center of rect1  
@@ -14,14 +15,16 @@ Instantiate a rectangle, rect1, like this:
      r   = rotation in degrees of rect1  
 
 Given two rectangles, rect1 and rect2,  
+
     ```     
     bool overlapped = rect1.overlapped(rect2) 
     ```     
+    
 returns true iff the two rectangles are overlapped.  
+
     ```
     overlapped = rect2.overlapped(rect1)  
     ```
-           
 returns the same value.  
 
 If desired, the axis of separation may be obtained.  
