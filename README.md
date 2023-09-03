@@ -30,10 +30,10 @@ projections of the vertices of the two rectangles do not overlap.
 
 To obtain the axis of separation, the caller must pass in an  
 empty Axis object, for example:  
-```
-   Axis aos = new Axis(0,0);  
-   overlapped = rect1.overlapped(rect2, aos) 
-   ```
+    ```
+     Axis aos = new Axis(0,0);  
+     overlapped = rect1.overlapped(rect2, aos) 
+    ```
 If overlapped() returns false, then aos contains the axis of separation  
 If overlapped() returns true, then aos is undefined  
 
