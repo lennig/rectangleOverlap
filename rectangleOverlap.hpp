@@ -9,7 +9,7 @@
 
 // How to use:
 //  Instantiate a rectangle rect1 like this:
-//    Rectangle rect1 = Rectangle(x, y, w, h, r)
+//    Rectangle rect1 = new Rectangle(x, y, w, h, r)
 // where
 //   (x,y) = center of rect1
 //   (w,h) = width and height of rect1
