@@ -36,3 +36,4 @@ which is a special case (for rectangles) of the Separating Axis Theorem for conv
 
 How to build example:
  g++ -std=c++17 -o rectangleOverlap  rectangleOverlap.cpp main.cpp
+
