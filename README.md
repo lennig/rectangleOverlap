@@ -16,15 +16,15 @@ Rectangle rect1 = new Rectangle(x, y, w, h, r)
 
 Given two rectangles, rect1 and rect2,  
 
-    ```     
-    bool overlapped = rect1.overlapped(rect2) 
-    ```     
+  ```     
+bool overlapped = rect1.overlapped(rect2) 
+  ```     
     
 returns true iff the two rectangles are overlapped.  
 
-    ```
-    overlapped = rect2.overlapped(rect1)  
-    ```
+  ```
+overlapped = rect2.overlapped(rect1)  
+  ```
 returns the same value.  
 
 If desired, the axis of separation may be obtained.  
