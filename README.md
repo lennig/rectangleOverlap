@@ -6,13 +6,13 @@ If they do not overlap, optionally provides their axis of separation.
 Instantiate a rectangle rect1 like this: 
  
   ```
-Rectangle rect1 = new Rectangle(x, y, w, h, r)  
+Rectangle rect = new Rectangle(x, y, w, h, r)  
   ```
   
   where  
-   (x,y) = center of rect1  
-   (w,h) = width and height of rect1  
-     r   = rotation in degrees of rect1  
+   (x,y) = center of rect  
+   (w,h) = width and height of rect  
+     r   = rotation in degrees of rect  
 
 Given two rectangles, rect1 and rect2,  
 
@@ -28,16 +28,16 @@ overlapped = rect2.overlapped(rect1)
 returns the same value.  
 
 If desired, the axis of separation may be obtained.  
-The axis of separation is the axis upon which the orthogonal  
+The axis of separation is an axis upon which the orthogonal  
 projections of the vertices of the two rectangles do not overlap.    
 
-To obtain the axis of separation, the caller must pass in an  
+To obtain an axis of separation, the caller must pass in an  
 empty Axis object, for example:  
     ```
      Axis aos = new Axis(0,0);  
-     overlapped = rect1.overlapped(rect2, aos) 
-    ```
-If overlapped() returns false, then aos contains the axis of separation  
+     overlapped = rect1.overlapped(rect2, aos)
+    ```  
+If overlapped() returns false, then aos contains an axis of separation  
 If overlapped() returns true, then aos is undefined  
 
 The algorithm implemented here is the one described in this article:  
