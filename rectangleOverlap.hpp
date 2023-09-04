@@ -69,8 +69,8 @@ public:
 // Class Rectangle
 class Rectangle {
 private:
-    void rotate(double const r);
-    Axis separationAxis(Rectangle) const;
+    void rotate(double const rdegrees);
+    Axis separationAxis(const Rectangle& rect) const;
 public:
     bool overlapped(Rectangle const& rect) const;
     bool overlapped(Rectangle const& rect, Axis& axisOfSeparation) const;

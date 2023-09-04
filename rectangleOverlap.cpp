@@ -99,7 +99,7 @@ double Rectangle::slope() const {
     }
 }
 
-Axis Rectangle::separationAxis(Rectangle rect) const {
+Axis Rectangle::separationAxis(const Rectangle &rect) const {
     // Compute the the projection axes onto which vertices will be projected
     std::vector<ro::Axis> axes;     // Will hold the projection axes
     
