@@ -3,7 +3,7 @@ Given two rectangles in (x,y) space, computes whether or not they overlap one an
 If they do not overlap, optionally provides their axis of separation.
 
 **How to use:**  
-Instantiate a rectangle rect1 like this: 
+Instantiate a rectangle rect like this: 
  
   ```
 Rectangle rect = new Rectangle(x, y, w, h, r)  
