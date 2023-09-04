@@ -37,6 +37,11 @@
 // https://jkh.me/files/tutorials/Separating%20Axis%20Theorem%20for%20Oriented%20Bounding%20Boxes.pdf
 // which is a special case (for rectangles) of the Separating Axis Theorem for convex polygons
 
+// There is a Python test harness to excercise rectangleOverlap:
+//     testHarness.py
+// The above Python script is distributed with rectangleOverlap on github
+// Edit testHarness.py to point to your executable
+
 // How to build example:
 // g++ -std=c++17 -o rectangleOverlap  rectangleOverlap.cpp main.cpp
 
