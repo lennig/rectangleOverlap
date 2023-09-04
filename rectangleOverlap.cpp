@@ -21,15 +21,14 @@ void Point::print() const {
     std::cout << "(" << x << ", "  << y << ")   ";
 };
 
-Axis::Axis(double const x, double const y) : Point(x,y){
-    // Normalizing axis length to unity is unnecessary.
-    // Axis length is not necessarily 1.
-};
+Axis::Axis(double const x, double const y) : Point(x,y){};
 
 double Axis::kproj(const Point& p) const {
-    // Return the scalar projection of p onto this axis
-    // up to a scaling constant that is not calculated
-    // but that is specific to this axis.
+    // Return the scalar orthogonal projection of p onto this axis
+    // up to a scaling constant that is not calculated but that
+    // is specific to this axis. The constant in question is the
+    // magnitude of this axis. Normalization of the axis to
+    // unit length is unnecessary for computing overlap.
 
     return this->x*p.x + this->y*p.y ;
 };
