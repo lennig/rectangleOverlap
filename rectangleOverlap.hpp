@@ -21,11 +21,12 @@
 //    overlapped = rect2.overlapped(rect1)
 //  returns the same value.
 //
-// If desired, the axis of separation may be obtained.
-// The axis of separation is the axis upon which the orthogonal
+// Axis of Separation
+// If desired, an axis of separation may be obtained.
+// The axis of separation is an axis upon which the orthogonal
 // projections of the vertices of the two rectangles do not overlap.
 
-// To obtain this axis of separation, the caller must pass in an
+// To obtain an axis of separation, the caller must pass in an
 // empty Axis object, for example:
 //   Axis aos = new Axis(0,0);
 //   overlapped = rect1.overlapped(rect2, aos)
@@ -40,8 +41,7 @@
 // g++ -std=c++17 -o rectangleOverlap  rectangleOverlap.cpp main.cpp
 
 
-#ifndef rectangleOverlap_hpp
-#define rectangleOverlap_hpp
+#pragma once
 
 #include <iostream>
 #include <cfloat>
@@ -87,5 +87,5 @@ public:
 
 } // end namespace ro
 
-#endif /* rectangleOverlap_hpp */
+
 
