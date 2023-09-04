@@ -27,7 +27,7 @@ overlapped = rect2.overlapped(rect1)
   ```
 returns the same value.  
 
-**Axis of Separation**
+**Axis of Separation**  
 If desired, an axis of separation may be obtained.  
 The axis of separation is an axis upon which the orthogonal  
 projections of the vertices of the two rectangles do not overlap.    
