@@ -8,7 +8,7 @@
 // Computes whether two rectangles in (x,y) space overlap each other
 
 // How to use:
-//  Instantiate a rectangle rect1 like this:
+//  Instantiate a rectangle rect like this:
 //    Rectangle rect = new Rectangle(x, y, w, h, r)
 // where
 //   (x,y) = center of rect
