@@ -68,7 +68,7 @@ public:
 class Axis : public Point {
 public:
     Axis(double const x, double const y);
-    double proj(const Point& p) const;
+    double kproj(const Point& p) const;
 };
 
 // Class Rectangle

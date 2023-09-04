@@ -22,21 +22,15 @@ void Point::print() const {
 };
 
 Axis::Axis(double const x, double const y) : Point(x,y){
-    // Axis is constructed to have length one
-    // except in the degenerate case when both x and y are zero, i.e.:
-    //   Axis axis = new Axis(0,0)
-    // In the degenerate case, both  isnan(axis.x) and isnan(axis.y) will be true
-    // Guaranteeing Axis objects have length one removes the division operation
-    // from Axis::proj()
-
-    double mag = sqrt( x*x + y*y );
-    this->x /= mag;
-    this->y /= mag;
+    // Normalizing axis length to unity is unnecessary.
+    // Axis length is not necessarily 1.
 };
 
-double Axis::proj(const Point& p) const {
+double Axis::kproj(const Point& p) const {
     // Return the scalar projection of p onto this axis
-    // No division necessary because Axis has unit length
+    // up to a scaling constant that is not calculated
+    // but that is specific to this axis.
+
     return this->x*p.x + this->y*p.y ;
 };
 
@@ -138,7 +132,7 @@ Axis Rectangle::separationAxis(const Rectangle &rect) const {
         double maxRect1Proj = -DBL_MAX;  // accumulates max projection onto theAxis of rect1 vertices
         
         for (auto vertex = rect.vertices.begin(); vertex != rect.vertices.end(); vertex++){
-            double pr = theAxis->proj(*vertex);     // Compute projection of this vertex onto theAxis
+            double pr = theAxis->kproj(*vertex);     // Compute projection of this vertex onto theAxis
             if (pr > maxRect1Proj) maxRect1Proj = pr;
             if (pr < minRect1Proj) minRect1Proj = pr;
         };
@@ -148,7 +142,7 @@ Axis Rectangle::separationAxis(const Rectangle &rect) const {
         double maxRect2Proj = -DBL_MAX;  // accumulates max projection onto theAxis of rect2 vertices
         
         for (auto vertex = vertices.begin(); vertex != vertices.end(); vertex++){
-            double pr = theAxis->proj(*vertex);     // Compute projection of this vertex onto theAxis
+            double pr = theAxis->kproj(*vertex);     // Compute projection of this vertex onto theAxis
             if (pr > maxRect2Proj) maxRect2Proj = pr;
             if (pr < minRect2Proj) minRect2Proj = pr;
         };
@@ -161,7 +155,7 @@ Axis Rectangle::separationAxis(const Rectangle &rect) const {
 
     }  // end of axes loop
     
-    return Axis(0,0);  // Indicates rectangles are overlapped
+    return Axis(nan("double"),nan("double"));  // Indicates rectangles are overlapped
 };
 
 bool Rectangle::overlapped(Rectangle const& rect) const{
