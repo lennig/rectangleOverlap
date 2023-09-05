@@ -64,7 +64,13 @@ Rectangle::Rectangle(const double x, const double y, const double w, const doubl
     vertices.emplace_back(x + dw,y - dh);
     vertices.emplace_back(x + dw,y + dh);
     vertices.emplace_back(x - dw,y + dh);
-    rotate(r);
+    
+    if (r != 0.0){
+        rotate(r);
+    }
+
+    // Compute this rectangle's finite slope and store it in member finiteSlope
+    finiteSlope = slope();
 };
 
 void Rectangle::print() const {
@@ -97,12 +103,10 @@ Axis Rectangle::separationAxis(const Rectangle &rect) const {
     std::vector<ro::Axis> axes;     // Will hold the projection axes
     
     // Compute two projection axes from rect
-    double s = rect.slope();
-    
-    if (s != 0) {
+    if (rect.finiteSlope != 0) {
         // Projection axes are not parallel to main axes
-        axes.emplace_back(1,s);
-        axes.emplace_back(1,-1/s);
+        axes.emplace_back(1,rect.finiteSlope);
+        axes.emplace_back(1,-1/rect.finiteSlope);
     }
     else{
         // Projection axes are parallel to main axes
@@ -110,25 +114,28 @@ Axis Rectangle::separationAxis(const Rectangle &rect) const {
         axes.emplace_back(0,1);
     }
     
-    // Compute two projection axes from this Rectangle
-    s = this->slope();
-    
-    if (s != 0) {
-        // Rectangle has been rotated
-        axes.emplace_back(1, s);
-        axes.emplace_back(1, -1/s);
+    // If slopes of the two rectangles are different, add two more axes
+    if (finiteSlope != rect.finiteSlope) {
+        // Compute two projection axes from this Rectangle
+        if (finiteSlope != 0) {
+            // Rectangle has been rotated
+            axes.emplace_back(1, finiteSlope);
+            axes.emplace_back(1, -1/finiteSlope);
+        }
+        else{
+            // Projection axes are parallel to the main axes
+            axes.emplace_back(1,0);
+            axes.emplace_back(0,1);
+        }
     }
-    else{
-        // Projection axes are parallel to the main axes
-        axes.emplace_back(1,0);
-        axes.emplace_back(0,1);
-    }
-    
-    // Iterate through projection axes, projecting all 8 vertices onto each axis and checking for overlap
+    // Main loop
+    // Iterate through projection axes, projecting all 8 vertices onto each axis and checking for overlap.
+    // The first time any axis separates rect vertices from this rectangle's vertices, report "no overlap".
+    // If overlap was found on every axis, report "overlapped".
     for (auto theAxis=axes.begin(); theAxis != axes.end(); theAxis++){
-        // Compute min and max projections of vertices of rect1 onto theAxis
-        double minRect1Proj =  DBL_MAX;  // accumulates min projection onto theAxis of rect1 vertices
-        double maxRect1Proj = -DBL_MAX;  // accumulates max projection onto theAxis of rect1 vertices
+        // Compute min and max projections of vertices of rect onto theAxis
+        double minRect1Proj =  DBL_MAX;  // accumulates min projection onto theAxis of vertices of rect
+        double maxRect1Proj = -DBL_MAX;  // accumulates max projection onto theAxis of vertices of rect
         
         for (auto vertex = rect.vertices.begin(); vertex != rect.vertices.end(); vertex++){
             double pr = theAxis->kproj(*vertex);     // Compute projection of this vertex onto theAxis
@@ -137,8 +144,8 @@ Axis Rectangle::separationAxis(const Rectangle &rect) const {
         };
         
         // Compute min and max projections of vertices of second rectangle onto theAxis
-        double minRect2Proj =  DBL_MAX;  // accumulates min projection onto theAxis of rect2 vertices
-        double maxRect2Proj = -DBL_MAX;  // accumulates max projection onto theAxis of rect2 vertices
+        double minRect2Proj =  DBL_MAX;  // accumulates min projection onto theAxis of vertices of this rectangle
+        double maxRect2Proj = -DBL_MAX;  // accumulates max projection onto theAxis of vertices of this rectangle
         
         for (auto vertex = vertices.begin(); vertex != vertices.end(); vertex++){
             double pr = theAxis->kproj(*vertex);     // Compute projection of this vertex onto theAxis

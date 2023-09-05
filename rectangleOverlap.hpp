@@ -74,8 +74,9 @@ public:
 // Class Rectangle
 class Rectangle {
 private:
-    void rotate(double const rdegrees);
+    void rotate(double const rotationDegrees);
     Axis separationAxis(const Rectangle& rect) const;
+    double slope() const;
 public:
     bool overlapped(Rectangle const& rect) const;
     bool overlapped(Rectangle const& rect, Axis& axisOfSeparation) const;
@@ -85,9 +86,10 @@ public:
     std::vector<Point> vertices;
     double xCenter;
     double yCenter;
+    double finiteSlope;
 
     void print() const;
-    double slope() const;
+
 };
 
 } // end namespace ro
